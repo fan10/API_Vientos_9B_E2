@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Mapa de vientos</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script src="valores_u_v.js"></script>
+<script src="coordenadas_lat_lon.js"></script>
+
+
+    <script>
+// This example displays a marker at the center of Australia.
+// When the user clicks the marker, an info window opens.
+var contador=0;
+var infowindow;
+var U;
+var V;
+var lat;
+var lon;
+function initialize() {
+var mapOptions = {
+     zoom:9,
+  };
+
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition(function(position){
+var pos = new google.maps.LatLng(position.coords.latitude,
+                                 position.coords.longitude);
+
+var infowindow = new google.maps.InfoWindow({
+map: map,
+position: pos,
+content: 'Usted esta aqui!!!!'
+});
+map.setCenter(pos);
+}, function(){
+handleNoGeolocation(true);
+});
+}else{
+handleNoGeolocation(false);
+}
+  
+var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+for(var i=0;i<lon.length;i++){
+
+ for(var j=0; j<lat.length;j++){
+
+var marker = new google.maps.Marker({
+
+     position: new google.maps.LatLng(lat[j],lon[i]),	     
+     map: map, 
+      title: 'Latitud: '+lat[j]+'\nLongitud: '+lon[i]+'\n U: '+U[contador]+'\n V: '+V[contador]
+
+
+  });
+
+contador=contador+1;
+
+ 
+  }//end of for j
+ }//end of for i 
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+ </body>
+</html>
+
+ 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+// This example displays a marker at the center of Australia.
+// When the user clicks the marker, an info window opens.
+
+function initMap() {
+  var uluru = {lat: -25.363, lng: 131.044};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: uluru
+  });
+
+var kk=new array(12,23,45)
+  var contentString = 'holaaaaaaaa';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+    title: 'Uluru (Ayers Rock)'
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+  </body>
+</html>
+
+

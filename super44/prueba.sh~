@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vi archivo.txt
+2l
+a
+[
+<Esc>
+:w!archivo.txt
+:q
